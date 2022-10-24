@@ -49,7 +49,6 @@ class ShoesListFragment : Fragment() {
                 menuInflater.inflate(R.menu.logout_menu, menu)
             }
 
-            // TODO: NOT Working
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return NavigationUI.onNavDestinationSelected(menuItem,requireView().findNavController())
             }
@@ -70,9 +69,5 @@ class ShoesListFragment : Fragment() {
         Navigation.findNavController(requireView()).navigate(action)
     }
 
-//    private fun navigateToLogin(){
-//        val action = ShoesListFragmentDirections.actionShoesListFragmentToLoginFragment()
-//        Navigation.findNavController(requireView()).navigate(action)
-//    }
 
 }

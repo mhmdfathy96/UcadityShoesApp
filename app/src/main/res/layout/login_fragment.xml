@@ -33,15 +33,6 @@
                 android:layout_marginTop="@dimen/margin_start"
                 android:layout_marginBottom="@dimen/margin_top"
                 android:text="@string/login_screen" />
-
-<!--            <TextView-->
-<!--                android:id="@+id/txtEmail"-->
-<!--                style="@style/style_regular_text"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="@dimen/margin_top"-->
-<!--                android:text="@string/email" />-->
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilEmail"
                 style="@style/style_input_field"
@@ -55,23 +46,6 @@
                     android:hint="@string/email"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
-
-<!--            <TextView-->
-<!--                android:id="@+id/txtEmailValidation"-->
-<!--                style="@style/style_validation"-->
-<!--                android:layout_width="294dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/email_validation"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/txtPassword"-->
-<!--                style="@style/style_regular_text"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="@dimen/margin_top"-->
-<!--                android:text="@string/password"-->
-<!--                tools:layout_editor_absoluteX="50dp" />-->
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPassword"
                 style="@style/style_input_field"
@@ -86,13 +60,6 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <TextView-->
-<!--                android:id="@+id/txtPasswordValidation"-->
-<!--                style="@style/style_validation"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/password_validation"-->
-<!--                />-->
         </LinearLayout>
 
         <LinearLayout

@@ -33,24 +33,6 @@ class LoginFragment : Fragment() {
                     onLogin()
                 }
             }
-
-//
-//            val isEmailValid = valid[LoginViewModel.email]!!
-//            val isPasswordValid = valid[LoginViewModel.email]!!
-//            if (!isEmailValid) {
-//                loginBinding.txtEmailValidation.visibility = View.VISIBLE
-//            } else {
-//                loginBinding.txtEmailValidation.visibility = View.GONE
-//            }
-//            if (!isPasswordValid) {
-//                loginBinding.txtPasswordValidation.visibility = View.VISIBLE
-//            } else {
-//                loginBinding.txtPasswordValidation.visibility = View.GONE
-//            }
-//            if (isEmailValid && isPasswordValid) {
-//                onLogin()
-//            }
-//            loginViewModel.loginModel.value!!.password
         })
 
         return loginBinding.root
