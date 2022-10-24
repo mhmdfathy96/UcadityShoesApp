@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="shoesListViewModel"
+            type="com.mf.myshoeapp.viewModels.ShoesListViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/layout_padding_start_end">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilName"
+            style="@style/style_input_field"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:autofillHints="name"
+            android:hint="@string/name"
+            android:inputType="textPersonName|text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                style="@style/style_input_field"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:text="@{shoesListViewModel.newShoe.name}"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCompany"
+            style="@style/style_input_field"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:autofillHints="name"
+            android:hint="@string/company"
+            android:inputType="textPersonName|text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCompany"
+                style="@style/style_input_field"
+                android:hint="@string/company"
+                android:inputType="text"
+                android:text="@{shoesListViewModel.newShoe.company}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilShoeSize"
+            style="@style/style_input_field"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:autofillHints="name"
+            android:hint="@string/shoe_size"
+            android:inputType="numberDecimal">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etShoeSize"
+                style="@style/style_input_field"
+                android:hint="@string/shoe_size"
+                android:inputType="numberDecimal"
+                android:text="@{Double.toString(shoesListViewModel.newShoe.size)}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDescription"
+            style="@style/style_input_field"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:autofillHints="name"
+            android:hint="@string/description"
+            android:inputType="textPersonName|text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                style="@style/style_input_field"
+                android:hint="@string/description"
+                android:inputType="text"
+                android:lines="5"
+                android:text="@{shoesListViewModel.newShoe.description}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancel"
+                style="@style/style_regular_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/cancel"
+                android:onClick="@{()->shoesListViewModel.onCancel()}"/>
+
+            <Button
+                android:id="@+id/btnSave"
+                style="@style/style_regular_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/save"
+                android:onClick="@{()->shoesListViewModel.onSave()}"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size_welcome">25sp</dimen>
+    <dimen name="margin_start">50dp</dimen>
+    <dimen name="margin_top">12dp</dimen>
+    <dimen name="margin_bottom">50dp</dimen>
+    <dimen name="marin_top_input">4dp</dimen>
+    <dimen name="font_size_regular">18sp</dimen>
+    <dimen name="font_size_small">10sp</dimen>
+    <dimen name="padding_start">8dp</dimen>
+    <dimen name="layout_padding_start_end">30dp</dimen>
+    <dimen name="spacing">10dp</dimen>
+    <dimen name="padding_card">15dp</dimen>
+    <dimen name="margin_start_end">10dp</dimen>
+</resources>
