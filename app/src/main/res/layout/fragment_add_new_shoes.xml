@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="shoesListViewModel"
             type="com.mf.myshoeapp.viewModels.ShoesListViewModel" />
     </data>
+
+    <!--    Here we use linear layout with TextInputEditText to fill our need as getting input from the user , with Two Way Data Binding with ViewModel-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,15 +23,16 @@
             android:layout_marginBottom="@dimen/margin_bottom"
             android:autofillHints="name"
             android:hint="@string/name"
-            android:inputType="textPersonName|text">
+            android:inputType="textPersonName|text"
+            app:errorMessage="@{@string/name_validation}"
+            app:shouldDisplayError="@{shoesListViewModel.startValidating &amp;&amp; !shoesListViewModel.isValidString(shoesListViewModel.newShoe.name)}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etName"
                 style="@style/style_input_field"
-                android:hint="@string/name"
                 android:inputType="text"
-                android:text="@{shoesListViewModel.newShoe.name}"
-                />
+                android:onTextChanged="@{(text,start,before,count)->shoesListViewModel.newShoe.setName(text.toString)}"
+                android:text="@{shoesListViewModel.newShoe.name}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -36,13 +41,15 @@
             android:layout_marginBottom="@dimen/margin_bottom"
             android:autofillHints="name"
             android:hint="@string/company"
-            android:inputType="textPersonName|text">
+            android:inputType="textPersonName|text"
+            app:errorMessage="@{@string/company_validation}"
+            app:shouldDisplayError="@{shoesListViewModel.startValidating &amp;&amp; !shoesListViewModel.isValidString(shoesListViewModel.newShoe.company)}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCompany"
                 style="@style/style_input_field"
-                android:hint="@string/company"
                 android:inputType="text"
+                android:onTextChanged="@{(text,start,before,count)->shoesListViewModel.newShoe.setCompany(text.toString)}"
                 android:text="@{shoesListViewModel.newShoe.company}" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,13 +59,15 @@
             android:layout_marginBottom="@dimen/margin_bottom"
             android:autofillHints="name"
             android:hint="@string/shoe_size"
-            android:inputType="numberDecimal">
+            android:inputType="numberDecimal"
+            app:errorMessage="@{@string/shoe_size_validation}"
+            app:shouldDisplayError="@{shoesListViewModel.startValidating &amp;&amp; !shoesListViewModel.isValidDouble(shoesListViewModel.newShoe.size)}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etShoeSize"
                 style="@style/style_input_field"
-                android:hint="@string/shoe_size"
                 android:inputType="numberDecimal"
+                android:onTextChanged="@{(text,start,before,count)-> shoesListViewModel.newShoe.setSize(text.toString)}"
                 android:text="@{Double.toString(shoesListViewModel.newShoe.size)}" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,14 +78,16 @@
             android:layout_marginBottom="@dimen/margin_bottom"
             android:autofillHints="name"
             android:hint="@string/description"
-            android:inputType="textPersonName|text">
+            android:inputType="textPersonName|text"
+            app:errorMessage="@{@string/description_validation}"
+            app:shouldDisplayError="@{shoesListViewModel.startValidating &amp;&amp; !shoesListViewModel.isValidString(shoesListViewModel.newShoe.description)}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDescription"
                 style="@style/style_input_field"
-                android:hint="@string/description"
                 android:inputType="text"
                 android:lines="5"
+                android:onTextChanged="@{(text,start,before,count)->shoesListViewModel.newShoe.setDescription(text.toString)}"
                 android:text="@{shoesListViewModel.newShoe.description}" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,8 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/cancel"
-                android:onClick="@{()->shoesListViewModel.onCancel()}"/>
+                android:text="@string/cancel" />
 
             <Button
                 android:id="@+id/btnSave"
@@ -100,8 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/save"
-                android:onClick="@{()->shoesListViewModel.onSave()}"/>
+                android:text="@string/save" />
         </LinearLayout>
 
     </LinearLayout>

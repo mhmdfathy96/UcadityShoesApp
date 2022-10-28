@@ -2,8 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!--Here is the login screen with simple Design using simple Linear Layout to fit our needs for this screen-->
     <data>
+
         <variable
             name="loginViewModel"
             type="com.mf.myshoeapp.viewModels.LoginViewModel" />
@@ -33,31 +34,42 @@
                 android:layout_marginTop="@dimen/margin_start"
                 android:layout_marginBottom="@dimen/margin_top"
                 android:text="@string/login_screen" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilEmail"
                 style="@style/style_input_field"
                 android:autofillHints="emailAddress"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress" >
+                android:inputType="textEmailAddress"
+                app:errorMessage="@{@string/email_validation}"
+                app:shouldDisplayError="@{loginViewModel.startValidating &amp;&amp; !loginViewModel.isEmailValid(loginViewModel.newUser.email)}">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmail"
                     style="@style/style_input_field"
                     android:hint="@string/email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:onTextChanged="@{(text,start,before,count)->loginViewModel.newUser.setEmail(text.toString)}"
+                    android:text="@{loginViewModel.newUser.email}"/>
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPassword"
                 style="@style/style_input_field"
                 android:autofillHints="emailAddress"
                 android:hint="@string/password"
-                android:inputType="textPassword|textEmailAddress" >
+                android:inputType="textPassword|textEmailAddress"
+                app:errorMessage="@{@string/password_validation}"
+                app:shouldDisplayError="@{loginViewModel.startValidating &amp;&amp; !loginViewModel.isPasswordValid(loginViewModel.newUser.password)}"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
                     style="@style/style_input_field"
                     android:hint="@string/password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:onTextChanged="@{(text,start,before,count)->loginViewModel.newUser.setPassword(text.toString)}"
+                    android:text="@{loginViewModel.newUser.password}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -75,16 +87,12 @@
                 android:id="@+id/btnLogin"
                 style="@style/style_regular_button"
                 android:layout_weight="1"
-                android:onClick="@{()->loginViewModel.onLogin()}"
                 android:text="@string/login" />
 
             <Button
                 android:id="@+id/btnRegister"
                 style="@style/style_regular_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="@{()->loginViewModel.onLogin()}"
                 android:text="@string/register" />
         </LinearLayout>
     </LinearLayout>

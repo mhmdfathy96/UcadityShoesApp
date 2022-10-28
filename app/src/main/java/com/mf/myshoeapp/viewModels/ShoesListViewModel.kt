@@ -10,42 +10,14 @@ class ShoesListViewModel : ViewModel() {
     private val _shoesList = MutableLiveData<MutableList<Shoe>>(mutableListOf())
     val shoesList: LiveData<MutableList<Shoe>>
         get() = _shoesList
-    private val _onAddNewShoe = MutableLiveData<Boolean>()
-    val onAddNewShoe: LiveData<Boolean>
-        get() = _onAddNewShoe
-    private val _onSave = MutableLiveData<Boolean>()
-    val onSave: LiveData<Boolean>
-        get() = _onSave
-    private val _onCancel = MutableLiveData<Boolean>()
-    val onCancel: LiveData<Boolean>
-        get() = _onCancel
     var newShoe = Shoe()
 
-    init {
-        newShoe = Shoe()
-        init()
-    }
+    var startValidating: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    fun init() {
-        _onAddNewShoe.value = false
-        _onSave.value = false
-        _onCancel.value = false
-    }
-
-
-    fun onAddNewShoe() {
-        _onAddNewShoe.value = true
+    fun onPopBack(){
+        startValidating.value = false
         newShoe = Shoe()
     }
-
-    fun onSave() {
-        _onSave.value = true
-    }
-
-    fun onCancel() {
-        _onCancel.value = true
-    }
-
 
     fun addNewShoe() {
         if (isValidShoe()) {
@@ -53,17 +25,20 @@ class ShoesListViewModel : ViewModel() {
         }
     }
 
-    private fun isValidShoe(): Boolean {
+    fun isValidShoe(): Boolean {
         return isValidString(newShoe.name) && isValidString(newShoe.company) && isValidString(
             newShoe.description
         ) && isValidDouble(newShoe.size)
     }
 
-    fun isValidString(data: String): Boolean {
-        return data.isNotEmpty()
+    fun isValidString(data: String?): Boolean {
+        return !data.isNullOrEmpty()
     }
 
-    fun isValidDouble(data: Double): Boolean {
+    fun isValidDouble(data: Double?): Boolean {
+        if (data == null) {
+            return false
+        }
         return data > 0.0
     }
 

@@ -1,40 +1,43 @@
 package com.mf.myshoeapp.viewModels
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mf.myshoeapp.models.LoginModel
 
 class LoginViewModel : ViewModel() {
-    private val _onLoginPressed = MutableLiveData<Boolean>()
-    val onLoginPressed: LiveData<Boolean>
-        get() = _onLoginPressed
+    var newUser=LoginModel()
+    var startValidating: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    init {
-        _onLoginPressed.value=false
+
+   fun onDestroy(){
+       startValidating.value=false
     }
 
-     fun onLogin() {
-        _onLoginPressed.value = true
+    fun isValidUser():Boolean{
+        return isEmailValid(newUser.email) && isPasswordValid(newUser.password)
     }
 
-
-    fun isEmailValid(email: String): Boolean {
-        var isEmailValid = false
-        if (email.contains(".com") && email.contains(
+    fun isEmailValid(email: String?): Boolean {
+        if (email == null ){
+            return false
+        }
+        if (email.lowercase().contains(".com") && email.contains(
                 "@"
             )
         ) {
-            isEmailValid = true
+            return true
         }
-        return isEmailValid
+        return false
     }
 
-    fun isPasswordValid(password: String): Boolean {
-        var isPasswordValid = false
-        if (password.length >= 8) {
-            isPasswordValid = true
+    fun isPasswordValid(password: String?): Boolean {
+        if (password == null ){
+            return false
         }
-        return isPasswordValid
+        if (password.length >= 8) {
+            return true
+        }
+        return false
     }
 
 }
